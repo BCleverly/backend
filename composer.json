@@ -17,7 +17,6 @@
     ],
     "require": {
         "php": "^8.0",
-        "barryvdh/laravel-omnipay": "^0.2.3",
         "illuminate/contracts": "^8.37",
         "laravel/scout": "^9.2",
         "lorisleiva/laravel-actions": "^2.1",
