@@ -1,0 +1,80 @@
+{
+    "name": "bcleverly/backend",
+    "description": "Back end system",
+    "keywords": [
+        "cleverly",
+        "laravel",
+        "backend"
+    ],
+    "homepage": "https://github.com/BCleverly/backend",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben Cleverly",
+            "email": "ben@bencleverly.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "barryvdh/laravel-omnipay": "^0.2.3",
+        "illuminate/contracts": "^8.37",
+        "laravel/scout": "^9.2",
+        "league/omnipay": "^3.2",
+        "lorisleiva/laravel-actions": "^2.1",
+        "lukepolo/laracart": "^1.6",
+        "meilisearch/meilisearch-php": "^0.18.0",
+        "omnipay/stripe": "^3.1",
+        "owen-it/laravel-auditing": "^12.0",
+        "predis/predis": "^1.1",
+        "spatie/laravel-medialibrary": "9.0.0",
+        "spatie/laravel-package-tools": "^1.4.3",
+        "spatie/laravel-permission": "^4.2",
+        "spatie/laravel-sluggable": "^3.0",
+        "spatie/laravel-tags": "^4.0",
+        "spatie/laravel-translatable": "^5.0",
+        "spatie/opening-hours": "^2.10"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.2",
+        "nunomaduro/collision": "^5.3",
+        "orchestra/testbench": "^6.15",
+        "phpstan/phpstan": "^0.12.93",
+        "phpunit/phpunit": "^9.3",
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ray": "^1.23",
+        "vimeo/psalm": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "BCleverly\\Backend\\": "src",
+            "BCleverly\\Backend\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BCleverly\\Backend\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BCleverly\\Backend\\BackendServiceProvider",
+                "BCleverly\\Backend\\BackendViewServiceProvider"
+            ],
+            "aliases": {
+                "Backend": "BCleverly\\Backend\\BackendFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

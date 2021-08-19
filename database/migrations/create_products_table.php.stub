@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+// https://stackoverflow.com/questions/24923469/modeling-product-variants
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->text('name');
+            $table->timestamps();
+        });
+
+        Schema::create('product_options', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->text('name');
+            $table->timestamps();
+        });
+
+        Schema::create('product_option_values', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('product_option_id')->references('id')->on('product_options');
+            $table->text('name');
+        });
+    }
+};
