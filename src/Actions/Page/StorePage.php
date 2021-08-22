@@ -2,10 +2,9 @@
 
 namespace BCleverly\Backend\Actions\Page;
 
+use BCleverly\Backend\Events\Page\PageCreated;
 use BCleverly\Backend\Http\Resources\Page\PageResource;
 use BCleverly\Backend\Models\Page;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -46,11 +45,17 @@ class StorePage
     public function handle(array $data): Page
     {
         $page = new Page;
+
         $page
-            ->author()->associate(auth()->user())
-            ->fill($data)->save();
+            ->author()
+            ->associate(auth()->user())
+            ->fill($data)
+            ->save();
+
         $page->syncTagsWithType($data['categories'] ?? [], 'categories')
              ->syncTagsWithType($data['tags'] ?? [], 'tags');
+
+        event(new PageCreated($page));
 
         return $page;
     }

@@ -2,10 +2,13 @@
 
 namespace BCleverly\Backend\Actions\Page;
 
+use BCleverly\Backend\Events\Page\PageUpdated;
 use BCleverly\Backend\Http\Resources\Page\BlogPostResource;
+use BCleverly\Backend\Http\Resources\Page\PageResource;
 use BCleverly\Backend\Models\Page;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use JetBrains\PhpStorm\Pure;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -61,7 +64,7 @@ class UpdatePage
         ];
     }
 
-    public function handle(ActionRequest $request, Page $page): bool
+    public function handle(ActionRequest $request, Page $page): Page
     {
         $data = $request->validated();
 
@@ -81,13 +84,17 @@ class UpdatePage
                 ->toMediaCollection('hero');
         }
 
-        return $page->syncTagsWithType(
+        $page->syncTagsWithType(
             $data['categories'] ?? [],
             'categories'
         )->syncTagsWithType(
             $data['tags'] ?? [],
             'tags')
          ->update($data);
+
+        event(new PageUpdated($page));
+
+        return $page;
     }
 
     public function asController(ActionRequest $request, Page $page)
@@ -100,8 +107,8 @@ class UpdatePage
         return redirect()->route('dashboard.page.index');
     }
 
-    public function jsonResponse(Page $page): BlogPostResource
+    public function jsonResponse(Page $page): PageResource
     {
-        return new BlogPostResource($page);
+        return new PageResource($page);
     }
 }

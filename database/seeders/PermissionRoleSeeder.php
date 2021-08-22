@@ -1,5 +1,5 @@
 <?php
-namespace BCleverly\Backend\Seeders;
+namespace BCleverly\Backend\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;

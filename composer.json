@@ -42,7 +42,8 @@
     "autoload": {
         "psr-4": {
             "BCleverly\\Backend\\": "src",
-            "BCleverly\\Backend\\Database\\Factories\\": "database/factories"
+            "BCleverly\\Backend\\Database\\Factories\\": "database/factories",
+            "BCleverly\\Backend\\Database\\Seeders\\": "database/seeders"
         }
     },
     "autoload-dev": {

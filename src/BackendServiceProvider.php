@@ -2,6 +2,7 @@
 
 namespace BCleverly\Backend;
 
+use BCleverly\Backend\Commands\InstallBackend;
 use BCleverly\Backend\Commands\InstallCountriesCommand;
 use BCleverly\Backend\Models\Page;
 use BCleverly\Backend\Observers\PageObserver;
@@ -25,13 +26,14 @@ class BackendServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasRoute('routes')
             ->hasMigrations([
-                'create_meta_tags_table',
                 'create_pages_table',
+                'create_meta_tags_table',
                 'create_tags_table',
             ])
             ->hasAssets()
             ->hasCommands([
                 InstallCountriesCommand::class,
+                InstallBackend::class
             ]);
     }
 

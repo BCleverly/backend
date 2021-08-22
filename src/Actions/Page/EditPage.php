@@ -13,7 +13,6 @@ class EditPage
 
     public function handle(Page $page): array
     {
-//        dd($page);
         return [
             'page' => $page,
             'pageTags' => $page->tags->groupBy('type')->each->transform(fn($item) => $item->name)->toArray(),
