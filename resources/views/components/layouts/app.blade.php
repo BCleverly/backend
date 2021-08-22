@@ -1,5 +1,4 @@
 @props([
-'fullWidth' => false,
 'header',
 ])
 <!DOCTYPE html>

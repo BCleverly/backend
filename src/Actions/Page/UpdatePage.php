@@ -9,6 +9,7 @@ use BCleverly\Backend\Models\Page;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 use JetBrains\PhpStorm\Pure;
+use Lorisleiva\Actions\Action;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -20,22 +21,23 @@ class UpdatePage
     {
         return [
             'id'               => ['required', 'integer'],
+            'parent_id'        => ['nullable', 'integer', Rule::exists('pages', 'id')],
             'name'             => ['required', 'string'],
             'slug'             => [
                 'required',
                 'string',
                 Rule::unique(config('backend.database.table_names.page'))->ignore($request->id, 'id'),
             ],
-            'excerpt'          => ['required', 'string'],
+            'excerpt'          => ['nullable', 'string'],
             'body'             => ['nullable'],
             'publish_at'       => [
                 'nullable',
                 'date',
             ],
-            'un_publish_at'       => [
+            'un_publish_at'    => [
                 'nullable',
                 'date',
-                'after_or_equal:publish_at'
+                'after_or_equal:publish_at',
             ],
             'categories'       => [
                 'nullable',
@@ -61,10 +63,14 @@ class UpdatePage
                 'nullable',
                 'file',
             ],
+            'saveAction'       => [
+                'required',
+                'string',
+            ],
         ];
     }
 
-    public function handle(ActionRequest $request, Page $page): Page
+    public function handle(ActionRequest $request, Page $page): array
     {
         $data = $request->validated();
 
@@ -84,17 +90,21 @@ class UpdatePage
                 ->toMediaCollection('hero');
         }
 
-        $page->syncTagsWithType(
-            $data['categories'] ?? [],
-            'categories'
-        )->syncTagsWithType(
-            $data['tags'] ?? [],
-            'tags')
-         ->update($data);
+        $page
+            ->syncTagsWithType(
+                $data['categories'] ?? [],
+                'categories'
+            )->syncTagsWithType(
+                $data['tags'] ?? [],
+                'tags'
+            )->update($data);
 
         event(new PageUpdated($page));
 
-        return $page;
+        return [
+            'data' => $data,
+            'page' => $page,
+        ];
     }
 
     public function asController(ActionRequest $request, Page $page)
@@ -102,13 +112,17 @@ class UpdatePage
         return $this->handle($request, $page);
     }
 
-    public function htmlResponse(): RedirectResponse
+    public function htmlResponse($data): RedirectResponse
     {
-        return redirect()->route('dashboard.page.index');
+        if ($data['data']['saveAction'] === 'saveClose') {
+            return redirect()->route('dashboard.page.index');
+        }
+
+        return redirect()->route('dashboard.page.edit', $data['page']);
     }
 
-    public function jsonResponse(Page $page): PageResource
+    public function jsonResponse(array $data): PageResource
     {
-        return new PageResource($page);
+        return new PageResource($data['page']);
     }
 }

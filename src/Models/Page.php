@@ -16,6 +16,7 @@ class Page extends Model implements Auditable, HasMedia
 
     protected $fillable = [
         'name',
+        'parent_id',
         'author_id',
         'slug',
         'description',
@@ -24,7 +25,7 @@ class Page extends Model implements Auditable, HasMedia
         'un_publish_at',
     ];
 
-    protected $with = ['tags', 'metaTag', 'media'];
+    protected $with = ['tags', 'metaTag', 'media', 'parent'];
 
     public function __construct(array $attributes = [])
     {
@@ -88,6 +89,16 @@ class Page extends Model implements Auditable, HasMedia
     public function getUpdateUrl(): string
     {
         return route('dashboard.page.update', $this);
+    }
+
+    public function parent(): HasOne
+    {
+        return $this->hasOne(self::class, 'id', 'parent_id');
+    }
+
+    public function child(): HasOne
+    {
+        return $this->hasOne(self::class, 'parent_id', 'id');
     }
 
     public function author(): BelongsTo

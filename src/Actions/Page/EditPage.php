@@ -15,6 +15,12 @@ class EditPage
     {
         return [
             'page' => $page,
+            'pages' => Page::all('id','name')->transform(function($item) {
+                return [
+                    'value' => $item->id,
+                    'text' => $item->name
+                ];
+            })->all(),
             'pageTags' => $page->tags->groupBy('type')->each->transform(fn($item) => $item->name)->toArray(),
             'categories' => Tag::where('type','categories')->get(['name'])->transform(function($item) {
                 return [

@@ -22,11 +22,14 @@ class UploadPageMedia
     public function handle(ActionRequest $request, Page $page): array
     {
         return [
-            'url' => $page->addMediaFromRequest('upload')->withResponsiveImages()->toMediaCollection('images')->getUrl(),
+            'success' => true,
+            'file' => [
+                'url' => $page->addMediaFromRequest('image')->withResponsiveImages()->toMediaCollection('images')->getUrl()
+            ],
         ];
     }
 
-    public function jsonResponse($data)
+    public function jsonResponse($data): \Illuminate\Http\JsonResponse
     {
         return response()->json($data);
     }
