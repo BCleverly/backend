@@ -22,9 +22,10 @@
     "sass": "^1.38.0",
     "sass-loader": "^12.1.0",
     "tailwindcss": "^2.2.7",
-    "@ckeditor/ckeditor5-build-classic": "^27.1.0",
-    "@ckeditor/ckeditor5-ckfinder": "^29.1.0",
     "@tailwindcss/typography": "^0.4.1",
     "flatpickr": "^4.6.9"
+  },
+  "dependencies": {
+    "@editorjs/editorjs": "^2.22.2"
   }
 }

@@ -3,7 +3,7 @@
 </x:backend::layouts.nav-link>
 
 <div x-data="pageTypeDropdown" class="text-white">
-    <button @click="toggle" class="w-full bg-gray-900 text-white group flex justify items-center px-2 py-2 text-sm font-medium rounded-md">
+    <button @click="toggle" class="w-full text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
         <svg class="{{ ($active ?? false) ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-300' }} mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
              aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -17,7 +17,7 @@
     <ul x-cloak x-show="open" class="mt-2">
         @foreach($pageTypes as $pageType)
             <li class="mb-2">
-                <a class="ml-10 px-1 py-2 font-medium text-sm block" href="{{ route('dashboard.page.type.index', $pageType->type) }}">{{ \Illuminate\Support\Str::ucfirst($pageType->type) }}</a>
+                <a class="pl-10 pr-1 pr-2 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md" href="{{ route('dashboard.page.type.index', $pageType->type) }}">{{ \Illuminate\Support\Str::ucfirst($pageType->type) }}</a>
             </li>
         @endforeach
     </ul>

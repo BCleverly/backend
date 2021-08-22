@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/backend/css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/vendor/backend/js/app.js') }}" defer></script>
 </head>
 <body class="font-sans antialiased">
 <div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ mobile: false }">

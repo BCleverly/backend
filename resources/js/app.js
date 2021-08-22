@@ -1,7 +1,6 @@
 require('./bootstrap');
 
 import Alpine from 'alpinejs'
-
 window.Alpine = Alpine
 Alpine.start()
 
@@ -14,3 +13,6 @@ document
             time_24hr: true
         })
     );
+
+import EditorJS from '@editorjs/editorjs';
+const editor = new EditorJS();

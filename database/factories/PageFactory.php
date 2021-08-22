@@ -18,7 +18,7 @@ class PageFactory extends Factory
             'uuid' => Str::uuid(),
             'excerpt' => $this->faker->sentence,
             'author_id' => $this->faker->numberBetween(1, \App\Models\User::count()),
-            'body' => $this->faker->sentences(10, true)
+            'body' => ''
         ];
     }
 }
