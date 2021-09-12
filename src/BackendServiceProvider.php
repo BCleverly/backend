@@ -4,8 +4,14 @@ namespace BCleverly\Backend;
 
 use BCleverly\Backend\Commands\InstallBackend;
 use BCleverly\Backend\Commands\InstallCountriesCommand;
+use BCleverly\Backend\Models\Festival\Festival;
+use BCleverly\Backend\Models\Festival\Performer;
 use BCleverly\Backend\Models\Page;
+use BCleverly\Backend\Observers\FestivalObserver;
 use BCleverly\Backend\Observers\PageObserver;
+use BCleverly\Backend\Observers\PerformerObserver;
+use BCleverly\Backend\Search\Dashboard;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
@@ -29,6 +35,7 @@ class BackendServiceProvider extends PackageServiceProvider
                 'create_pages_table',
                 'create_meta_tags_table',
                 'create_tags_table',
+                'create_festival_tables',
             ])
             ->hasAssets()
             ->hasCommands([
@@ -39,7 +46,16 @@ class BackendServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
+        Relation::morphMap([
+            1 => Page::class,
+            2 => Festival::class,
+            3 => Performer::class,
+        ]);
+
         Page::observe(PageObserver::class);
-//        Blade::componentNamespace('BCleverly\\Views\\Components', 'backend');
+        Festival::observe(FestivalObserver::class);
+        Performer::observe(PerformerObserver::class);
+
+        Dashboard::bootSearchable();
     }
 }

@@ -17,19 +17,22 @@
     ],
     "require": {
         "php": "^8.0",
+        "algolia/algoliasearch-client-php": "^3.1",
+        "algolia/scout-extended": "^1.20",
         "illuminate/contracts": "^8.37",
         "laravel/scout": "^9.2",
         "lorisleiva/laravel-actions": "^2.1",
-        "meilisearch/meilisearch-php": "^0.18.0",
         "owen-it/laravel-auditing": "^12.0",
         "predis/predis": "^1.1",
         "spatie/laravel-medialibrary": "9.0.0",
         "spatie/laravel-package-tools": "^1.4.3",
         "spatie/laravel-permission": "^4.2",
+        "spatie/laravel-sluggable": "^3.1",
         "spatie/laravel-tags": "^4.0",
         "spatie/opening-hours": "^2.10"
     },
     "require-dev": {
+        "bcleverly/migrationtosql": "^0.2.0",
         "brianium/paratest": "^6.2",
         "nunomaduro/collision": "^5.3",
         "orchestra/testbench": "^6.15",
@@ -65,9 +68,7 @@
                 "BCleverly\\Backend\\BackendServiceProvider",
                 "BCleverly\\Backend\\BackendViewServiceProvider"
             ],
-            "aliases": {
-                "Backend": "BCleverly\\Backend\\BackendFacade"
-            }
+            "aliases": []
         }
     },
     "minimum-stability": "dev",

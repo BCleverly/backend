@@ -56,8 +56,8 @@ class MetaTag extends Model implements \OwenIt\Auditing\Contracts\Auditable, Has
     {
     }
 
-    public function page(): BelongsTo
+    public function metaTaggable()
     {
-        return $this->belongsTo(Page::class);
+        return $this->morphTo();
     }
 }

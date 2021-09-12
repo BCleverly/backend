@@ -1,4 +1,4 @@
-<x:backend::layouts.app header="Editing {{ $page->name }}" >
+<x:backend::layouts.app header="Editing {{ $page->name }}" :fullWidth="false">
    <x:backend::form method="post" action="{{ route('dashboard.page.update', $page) }}" enctype="multipart/form-data">
       @method('patch')
       <x:backend::form.hidden name="id" :model="$page"/>

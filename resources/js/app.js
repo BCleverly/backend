@@ -6,6 +6,8 @@ window.Alpine = Alpine
 Alpine.start()
 
 import flatpickr from "flatpickr";
+import './components/search';
+
 
 document
     .querySelectorAll('.datetime')
@@ -109,4 +111,4 @@ document
             },
 
         });
-    })
+    });

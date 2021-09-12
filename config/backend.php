@@ -9,6 +9,8 @@ return [
             'page' => 'pages',
             'blog_post' => 'blog_posts',
             'meta_tag' => 'meta_tags',
+            'festival' => 'festivals',
+            'performer' => 'performers',
         ]
     ]
 ];

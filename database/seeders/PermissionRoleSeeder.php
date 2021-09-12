@@ -1,4 +1,5 @@
 <?php
+
 namespace BCleverly\Backend\Database\Seeders;
 
 use Illuminate\Database\Seeder;

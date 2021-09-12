@@ -6,12 +6,12 @@
     'class' => 'space-y-8'
 ]) }}>
     @csrf
-    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="{{ isset($sidebar) ? 'sm:col-span-4' : 'sm:col-span-6' }}">
+    <div class="mt-6 flex flex-wrap gap-4">
+        <div class="flex-1">
             {{ $slot }}
         </div>
         @isset($sidebar)
-            <div class="sm:col-span-2">
+            <div class="sm:max-w-[300px]">
                 {{ $sidebar }}
             </div>
         @endisset

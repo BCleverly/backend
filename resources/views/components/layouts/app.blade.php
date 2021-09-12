@@ -1,5 +1,6 @@
 @props([
-'header',
+    'fullWidth' => false,
+    'header',
 ])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -169,7 +170,7 @@
                         {{ $headerButtons }}
                     @endisset
                 </div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                <div class="{{ $fullWidth ? '' : 'max-w-7xl' }} mx-auto px-4 sm:px-6 md:px-8">
                     {{ $slot }}
                 </div>
             </div>

@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create(config('backend.database.table_names.meta_tag'), function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->references('id')->on(config('backend.database.table_names.page'));
+            $table->morphs('meta_taggable');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['id', 'meta_taggable_id', 'meta_taggable_type'], 'meta_taggable_id_unique');
         });
     }
 };

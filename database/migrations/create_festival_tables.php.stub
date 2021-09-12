@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create(config('backend.database.table_names.festival'), function (Blueprint $table) {
+            $table->id();
+            $table->uuid('uuid');
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
+            $table->longText('body')->nullable();
+            $table->timestamp('publish_at')->nullable();
+            $table->timestamp('festival_start')->nullable();
+            $table->timestamp('festival_end')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create(config('backend.database.table_names.performer'), function (Blueprint $table) {
+            $table->id();
+            $table->uuid('uuid');
+            $table->string('name');
+            $table->string('slug');
+            $table->longText('body');
+            $table->timestamp('publish_at')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create('festival_performer', function (Blueprint $table) {
+            $table->foreignId('festival_id')->references('id')->on(config('backend.database.table_names.festival'));
+            $table->foreignId('performer_id')->references('id')->on(config('backend.database.table_names.performer'));
+            $table->string('day')->nullable();
+            $table->string('stage_name')->nullable();
+            $table->string('time')->nullable();
+            $table->boolean('headline')->default(0);
+        });
+
+    }
+};

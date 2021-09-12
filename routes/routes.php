@@ -1,12 +1,11 @@
 <?php
 
-use BCleverly\Backend\Actions\File\CreateDirectory;
-use BCleverly\Backend\Actions\File\ShowDirectory;
+
 use BCleverly\Backend\Actions\ShowDashboard;
-use BCleverly\Backend\Actions\Store\Product\{CreateProduct, EditProduct, ListProducts, StoreProduct, UpdateProduct};
-use BCleverly\Backend\Actions\Store\StoreDashboard;
 use BCleverly\Backend\Actions\Tag\{CreateTag, DeleteTag, EditTag, ListTagByType, ListTags, StoreTag, StoreTagByType, UpdateTag};
-use BCleverly\Backend\Actions\Page\{CreatePage, DeletePage, EditPage, ListPages, ListTypes, StorePage, UpdatePage};
+use BCleverly\Backend\Actions\Page\{CreatePage, DeletePage, EditPage, ListPages, ListPageTypes, StorePage, UpdatePage, UploadPageMedia};
+use BCleverly\Backend\Actions\Festival\{CreateFestival, DeleteFestival, EditFestival, ListFestivals, StoreFestival, UpdateFestival, UploadFestivalMedia};
+use BCleverly\Backend\Actions\Festival\Performer\{CreatePerformer, DeletePerformer, ListPerformers};
 
 Route::group([
     'middleware' => [
@@ -18,6 +17,8 @@ Route::group([
 ], function () {
 
     Route::get('/', ShowDashboard::class)->name('index');
+
+    Route::get('/search', \BCleverly\Backend\Actions\Search::class)->name('search');
 
     Route::group([
         'as'     => 'tag.',
@@ -40,38 +41,63 @@ Route::group([
         'as'     => 'page.',
         'prefix' => 'page',
     ], function () {
-        Route::get('/', \BCleverly\Backend\Actions\Page\ListPageTypes::class)->name('index');
+        Route::get('/', ListPageTypes::class)->name('index');
+        Route::post('/', StorePage::class)->name('store');
         Route::get('/create', CreatePage::class)->name('create');
         Route::get('/{page}/edit', EditPage::class)->name('edit');
         Route::patch('/{page}/edit', UpdatePage::class)->name('update');
-        Route::post('/{page}/media/upload', \BCleverly\Backend\Actions\Page\UploadPageMedia::class)->name('media.upload');
+        Route::post('/{page}/media/upload', UploadPageMedia::class)->name('media.upload');
         Route::delete('/{page}', DeletePage::class)->name('delete');
-        Route::post('', StorePage::class)->name('store');
+
         Route::get('/{type}', ListPages::class)->name('type.index');
     });
 
     Route::group([
-        'as'     => 'files.',
-        'prefix' => 'files',
+        'as'     => 'festival.',
+        'prefix' => 'festival',
     ], function () {
-        Route::get('{path?}', ShowDirectory::class)->where('path', '(.*)')->name('index');
-        Route::post('add-folder', CreateDirectory::class)->name('folder');
-    });
+        Route::get('/', ListFestivals::class)->name('index');
+        Route::post('/', StoreFestival::class)->name('store');
+        Route::get('/create', CreateFestival::class)->name('create');
+        Route::get('/{festival}/edit', EditFestival::class)->name('edit');
+        Route::patch('/{festival}', UpdateFestival::class)->name('update');
+        Route::delete('/{festival}', DeleteFestival::class)->name('delete');
+        Route::post('/{festival}/media/upload', UploadFestivalMedia::class)->name('media.upload');
 
-    Route::group([
-        'as'     => 'store.',
-        'prefix' => 'store',
-    ], function () {
-        Route::get('/', StoreDashboard::class)->name('index');
         Route::group([
-            'as'     => 'product.',
-            'prefix' => 'product',
+            'as'     => 'performer.',
+            'prefix' => 'performer',
         ], function () {
-            Route::get('/', ListProducts::class)->name('index');
-            Route::post('/', StoreProduct::class)->name('store');
-            Route::get('create', CreateProduct::class)->name('create');
-            Route::get('{product}/edit', EditProduct::class)->name('edit');
-            Route::patch('{product}/edit', UpdateProduct::class)->name('update');
+            Route::get('/', ListPerformers::class)->name('index');
+            Route::get('/create', CreatePerformer::class)->name('create');
+            Route::get('/{performer}/edit', DeletePerformer::class)->name('edit');
+            Route::patch('/{performer}', DeletePerformer::class)->name('update');
+            Route::delete('/{performer}', DeletePerformer::class)->name('delete');
         });
     });
+
+//    Route::group([
+//        'as'     => 'files.',
+//        'prefix' => 'files',
+//    ], function () {
+//        Route::get('{path?}', ShowDirectory::class)->where('path', '(.*)')->name('index');
+//        Route::post('add-folder', CreateDirectory::class)->name('folder');
+//    });
+
+//    Route::group([
+//        'as'     => 'store.',
+//        'prefix' => 'store',
+//    ], function () {
+//        Route::get('/', StoreDashboard::class)->name('index');
+//        Route::group([
+//            'as'     => 'product.',
+//            'prefix' => 'product',
+//        ], function () {
+//            Route::get('/', ListProducts::class)->name('index');
+//            Route::post('/', StoreProduct::class)->name('store');
+//            Route::get('create', CreateProduct::class)->name('create');
+//            Route::get('{product}/edit', EditProduct::class)->name('edit');
+//            Route::patch('{product}/edit', UpdateProduct::class)->name('update');
+//        });
+//    });
 });

@@ -13,11 +13,15 @@ class CreatePage
 
     public function handle(): Page
     {
-        $page = new Page;
-        $page
-            ->author()
-            ->associate(auth()->user())
-            ->save();
+        $page = Page::where('name', '')->first();
+        if ($page === null) {
+            $page = new Page;
+            $page
+                ->author()
+                ->associate(auth()->user())
+                ->save();
+        }
+
         return $page;
     }
 

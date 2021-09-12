@@ -3,8 +3,9 @@
 namespace BCleverly\Backend\Models;
 
 use BCleverly\Backend\Database\Factories\PageFactory;
-use BCleverly\Backend\Traits\{HasAverageReadingTime, HasTags, HasTranslations};
+use BCleverly\Backend\Traits\{HasAverageReadingTime, HasMetaTags, HasTags, HasTranslations};
 use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\BelongsTo, Relations\HasOne, SoftDeletes, Builder};
+use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -12,7 +13,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Page extends Model implements Auditable, HasMedia
 {
-    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, HasTags, HasAverageReadingTime, InteractsWithMedia;
+    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, HasTags, HasAverageReadingTime, InteractsWithMedia, HasMetaTags, Searchable;
 
     protected $fillable = [
         'name',
@@ -106,10 +107,6 @@ class Page extends Model implements Auditable, HasMedia
         return $this->belongsTo(config('backend.user_class'), 'author_id', 'id');
     }
 
-    public function metaTag(): HasOne
-    {
-        return $this->hasOne(MetaTag::class);
-    }
 
     public function isPublished(): mixed
     {

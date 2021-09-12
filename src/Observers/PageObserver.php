@@ -15,8 +15,6 @@ class PageObserver
 
     public function created(Page $page): void
     {
-        MetaTag::create([
-            'page_id' => $page->id,
-        ]);
+        $page->metaTag()->create();
     }
 }

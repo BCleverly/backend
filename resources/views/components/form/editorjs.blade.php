@@ -14,7 +14,7 @@
     </label>
     <div class="mt-1">
         <textarea
-                data-imageupload="{{ route('dashboard.page.media.upload', $model) }}"
+                data-imageupload="{{ $uploadUrl }}"
                 name="{{ $name }}"
                 id="{{ $name }}"
                 rows="3"
