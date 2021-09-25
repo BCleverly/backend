@@ -9,8 +9,11 @@ return [
             'page' => 'pages',
             'blog_post' => 'blog_posts',
             'meta_tag' => 'meta_tags',
-            'festival' => 'festivals',
-            'performer' => 'performers',
+            'festival_day' => 'festival_days',
+            'festival_day_stage' => 'festival_day_stage',
+            'festival_stage' => 'festival_stages',
+            'festival_stage_performer' => 'festival_stage_performer',
+            'festival_performer' => 'festival_performers',
         ]
     ]
 ];

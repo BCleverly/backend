@@ -4,7 +4,7 @@
 use BCleverly\Backend\Actions\ShowDashboard;
 use BCleverly\Backend\Actions\Tag\{CreateTag, DeleteTag, EditTag, ListTagByType, ListTags, StoreTag, StoreTagByType, UpdateTag};
 use BCleverly\Backend\Actions\Page\{CreatePage, DeletePage, EditPage, ListPages, ListPageTypes, StorePage, UpdatePage, UploadPageMedia};
-use BCleverly\Backend\Actions\Festival\{CreateFestival, DeleteFestival, EditFestival, ListFestivals, StoreFestival, UpdateFestival, UploadFestivalMedia};
+use BCleverly\Backend\Actions\Festival\{CreateFestival, DeleteFestival, EditFestival, ManageFestival, StoreFestival, UpdateFestival, UploadFestivalMedia};
 use BCleverly\Backend\Actions\Festival\Performer\{CreatePerformer, DeletePerformer, ListPerformers};
 
 Route::group([
@@ -56,14 +56,7 @@ Route::group([
         'as'     => 'festival.',
         'prefix' => 'festival',
     ], function () {
-        Route::get('/', ListFestivals::class)->name('index');
-        Route::post('/', StoreFestival::class)->name('store');
-        Route::get('/create', CreateFestival::class)->name('create');
-        Route::get('/{festival}/edit', EditFestival::class)->name('edit');
-        Route::patch('/{festival}', UpdateFestival::class)->name('update');
-        Route::delete('/{festival}', DeleteFestival::class)->name('delete');
-        Route::post('/{festival}/media/upload', UploadFestivalMedia::class)->name('media.upload');
-
+        Route::get('/', ManageFestival::class)->name('dashboard');
         Route::group([
             'as'     => 'performer.',
             'prefix' => 'performer',

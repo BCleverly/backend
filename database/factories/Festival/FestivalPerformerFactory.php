@@ -2,15 +2,15 @@
 
 namespace BCleverly\Backend\Database\Factories\Festival;
 
-use BCleverly\Backend\Models\Festival\Festival;
+use BCleverly\Backend\Models\Festival\FestivalDay;
 
-use BCleverly\Backend\Models\Festival\Performer;
+use BCleverly\Backend\Models\Festival\FestivalPerformer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class PerformerFactory extends Factory
+class FestivalPerformerFactory extends Factory
 {
-    protected $model = Performer::class;
+    protected $model = FestivalPerformer::class;
 
     public function definition()
     {

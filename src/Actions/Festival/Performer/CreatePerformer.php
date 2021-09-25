@@ -2,7 +2,7 @@
 
 namespace BCleverly\Backend\Actions\Festival\Performer;
 
-use BCleverly\Backend\Models\Festival\Performer;
+use BCleverly\Backend\Models\Festival\FestivalPerformer;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -10,11 +10,11 @@ class CreatePerformer
 {
     use AsAction;
 
-    public function handle(ActionRequest $request): Performer
+    public function handle(ActionRequest $request): FestivalPerformer
     {
-        $festival = Performer::where('name', '')->first();
+        $festival = FestivalPerformer::where('name', '')->first();
         if ($festival === null) {
-            $festival = Performer::create();
+            $festival = FestivalPerformer::create();
         }
 
         return $festival;

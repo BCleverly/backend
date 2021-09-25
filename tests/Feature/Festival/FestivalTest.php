@@ -2,7 +2,7 @@
 
 namespace BCleverly\Backend\Tests;
 
-use BCleverly\Backend\Models\Festival\Festival;
+use BCleverly\Backend\Models\Festival\FestivalDay;
 use BCleverly\Backend\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -26,6 +26,6 @@ class FestivalTest extends TestCase
             'body' => '{"time":1629646555185,"blocks":[{"id":"oPpXIDM_IG","type":"header","data":{"text":"hello world","level":1}}],"version":"2.22.2"}',
         ]);
 
-        $response->assertRedirect(route('dashboard.festival.index'));
+        $response->assertRedirect(route('dashboard.festival.dashboard'));
     }
 }

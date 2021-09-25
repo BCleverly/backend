@@ -2,7 +2,8 @@
 
 namespace BCleverly\Backend\Models\Festival;
 
-use BCleverly\Backend\Database\Factories\Festival\FestivalFactory;
+use BCleverly\Backend\Database\Factories\Festival\FestivalDayFactory;
+use BCleverly\Backend\Database\Factories\Festival\FestivalStageFactory;
 use BCleverly\Backend\Traits\HasMetaTags;
 use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
 use Laravel\Scout\Searchable;
@@ -11,32 +12,30 @@ use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\{HasSlug, SlugOptions};
 
-class Festival extends Model implements Auditable, HasMedia
+class FestivalStage extends Model implements Auditable, HasMedia
 {
-    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, InteractsWithMedia, HasSlug, HasMetaTags, Searchable;
+    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, InteractsWithMedia, HasMetaTags, Searchable;
 
     protected $fillable = [
         'name',
         'uuid',
         'description',
         'body',
-        'publish_at',
-        'slug',
     ];
 
-    protected $with = ['media',];
+    protected $with = ['media'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('backend.database.table_names.festival'));
+        $this->setTable(config('backend.database.table_names.festival_stage'));
     }
 
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
                           ->generateSlugsFrom('name')
@@ -54,18 +53,28 @@ class Festival extends Model implements Auditable, HasMedia
              });
     }
 
-    protected static function newFactory(): FestivalFactory
+    protected static function newFactory(): FestivalStageFactory
     {
-        return FestivalFactory::new();
+        return FestivalStageFactory::new();
     }
 
-    public function isPublished(): mixed
+    public function days(): BelongsToMany
     {
-        return $this->attributes['publish_at']?->diffForHumans() ?? false;
+        return $this->belongsToMany(
+            FestivalDay::class,
+            config('backend.database.table_names.festival_day_stage'),
+            'festival_stage_id',
+            'festival_day_id'
+        )->withPivot(['order']);
     }
 
     public function performers(): BelongsToMany
     {
-        return $this->belongsToMany(Performer::class)->withPivot('day', 'time', 'stage_name', 'headline');
+        return $this->belongsToMany(
+            FestivalPerformer::class,
+            config('backend.database.table_names.festival_stage_performer'),
+            'festival_stage_id',
+            'festival_performer_id'
+        )->withPivot(['performance_time', 'headliner']);
     }
 }

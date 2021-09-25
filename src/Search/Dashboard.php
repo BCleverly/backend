@@ -3,16 +3,16 @@
 namespace BCleverly\Backend\Search;
 
 use Algolia\ScoutExtended\Searchable\Aggregator;
-use BCleverly\Backend\Models\Festival\{Festival, Performer};
+use BCleverly\Backend\Models\Festival\{FestivalDay, FestivalPerformer};
 use BCleverly\Backend\Models\Page;
 use Laravel\Scout\Searchable;
 
 class Dashboard extends Aggregator {
 
     protected $models = [
-        Festival::class,
+        FestivalDay::class,
         Page::class,
-        Performer::class
+        FestivalPerformer::class
     ];
 
     public function shouldBeSearchable()

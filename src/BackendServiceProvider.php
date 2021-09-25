@@ -4,15 +4,17 @@ namespace BCleverly\Backend;
 
 use BCleverly\Backend\Commands\InstallBackend;
 use BCleverly\Backend\Commands\InstallCountriesCommand;
-use BCleverly\Backend\Models\Festival\Festival;
-use BCleverly\Backend\Models\Festival\Performer;
+use BCleverly\Backend\Models\Festival\FestivalDay;
+use BCleverly\Backend\Models\Festival\FestivalPerformer;
+use BCleverly\Backend\Models\Festival\FestivalStage;
 use BCleverly\Backend\Models\Page;
-use BCleverly\Backend\Observers\FestivalObserver;
+use BCleverly\Backend\Observers\FestivalDayObserver;
+use BCleverly\Backend\Observers\FestivalStageObserver;
 use BCleverly\Backend\Observers\PageObserver;
-use BCleverly\Backend\Observers\PerformerObserver;
+use BCleverly\Backend\Observers\FestivalPerformerObserver;
 use BCleverly\Backend\Search\Dashboard;
+use BCleverly\Backend\Views\Components\ManagePerformers;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -48,14 +50,18 @@ class BackendServiceProvider extends PackageServiceProvider
     {
         Relation::morphMap([
             1 => Page::class,
-            2 => Festival::class,
-            3 => Performer::class,
+            2 => FestivalDay::class,
+            3 => FestivalPerformer::class,
         ]);
 
         Page::observe(PageObserver::class);
-        Festival::observe(FestivalObserver::class);
-        Performer::observe(PerformerObserver::class);
+        FestivalDay::observe(FestivalDayObserver::class);
+        FestivalPerformer::observe(FestivalPerformerObserver::class);
+        FestivalStage::observe(FestivalStageObserver::class);
 
         Dashboard::bootSearchable();
+
+        Blade::component('manage-performers', ManagePerformers::class);
+//        Blade::componentNamespace('BCleverly\\Backend\\Views\\Components', 'backend');
     }
 }

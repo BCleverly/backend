@@ -2,8 +2,8 @@
 
 namespace BCleverly\Backend\Actions\Festival\Performer;
 
-use BCleverly\Backend\Models\Festival\Festival;
-use BCleverly\Backend\Models\Festival\Performer;
+use BCleverly\Backend\Models\Festival\FestivalDay;
+use BCleverly\Backend\Models\Festival\FestivalPerformer;
 use Illuminate\Contracts\Filesystem\Factory as Filesystem;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -12,7 +12,7 @@ class DeletePerformer
 {
     use AsAction;
 
-    public function handle(Performer $performer): bool
+    public function handle(FestivalPerformer $performer): bool
     {
         return $performer->delete();
     }

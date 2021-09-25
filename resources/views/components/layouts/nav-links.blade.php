@@ -37,7 +37,7 @@
 {{--<x:backend::layouts.nav-link :href="route('dashboard.files.index')" :active="request()->routeIs('dashboard.file.*')">--}}
 {{--    {{ __('Files') }}--}}
 {{--</x:backend::layouts.nav-link>--}}
-<x:backend::layouts.nav-link :href="route('dashboard.festival.index')" :active="request()->routeIs('dashboard.festival.*')">
+<x:backend::layouts.nav-link :href="route('dashboard.festival.dashboard')" :active="request()->routeIs('dashboard.festival.*')">
     {{ __('Festival') }}
 </x:backend::layouts.nav-link>
 

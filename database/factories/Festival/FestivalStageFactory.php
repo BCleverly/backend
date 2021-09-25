@@ -2,14 +2,14 @@
 
 namespace BCleverly\Backend\Database\Factories\Festival;
 
-use BCleverly\Backend\Models\Festival\Festival;
+use BCleverly\Backend\Models\Festival\FestivalDay;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class FestivalFactory extends Factory
+class FestivalStageFactory extends Factory
 {
-    protected $model = Festival::class;
+    protected $model = FestivalDay::class;
 
     public function definition()
     {
@@ -18,9 +18,6 @@ class FestivalFactory extends Factory
             'uuid' => Str::uuid(),
             'description' => $this->faker->sentence,
             'body' => '{"time":1629646555185,"blocks":[{"id":"oPpXIDM_IG","type":"header","data":{"text":"hello world","level":1}}],"version":"2.22.2"}',
-            'publish_at' => null,
-            'festival_start' => now()->addMonth(),
-            'festival_end' => now()->addMonth()->addDays(3)
         ];
     }
 }
