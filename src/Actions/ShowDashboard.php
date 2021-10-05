@@ -12,7 +12,7 @@ class ShowDashboard
     public function handle()
     {
         return [
-            'pages' => Page::limit(5)->orderBy('updated_at')->get()
+            'pages' => Page::limit(5)->orderBy('updated_at')->get(),
         ];
     }
 

@@ -1,12 +1,30 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use BCleverly\Backend\Actions\ShowDashboard;
+use BCleverly\Backend\Actions\Festival\Day\CreateDay;
+use BCleverly\Backend\Actions\Festival\Day\ManageDay;
+use BCleverly\Backend\Actions\Festival\Day\StoreDay;
+use BCleverly\Backend\Actions\Festival\Performer\CreatePerformer;
+use BCleverly\Backend\Actions\Festival\Performer\DeletePerformer;
+use BCleverly\Backend\Actions\Festival\Performer\ListPerformers;
 use BCleverly\Backend\Actions\Festival\{ManageFestival};
-use BCleverly\Backend\Actions\Festival\Day\{CreateDay, ManageDay, StoreDay};
-use BCleverly\Backend\Actions\Festival\Performer\{CreatePerformer, DeletePerformer, ListPerformers};
-use BCleverly\Backend\Actions\Tag\{CreateTag, DeleteTag, EditTag, ListTagByType, ListTags, StoreTag, StoreTagByType, UpdateTag};
-use BCleverly\Backend\Actions\Page\{CreatePage, DeletePage, EditPage, ListPages, ListPageTypes, StorePage, UpdatePage, UploadPageMedia};
+use BCleverly\Backend\Actions\Page\CreatePage;
+use BCleverly\Backend\Actions\Page\DeletePage;
+use BCleverly\Backend\Actions\Page\EditPage;
+use BCleverly\Backend\Actions\Page\ListPages;
+use BCleverly\Backend\Actions\Page\ListPageTypes;
+use BCleverly\Backend\Actions\Page\StorePage;
+use BCleverly\Backend\Actions\Page\UpdatePage;
+use BCleverly\Backend\Actions\Page\UploadPageMedia;
+use BCleverly\Backend\Actions\ShowDashboard;
+use BCleverly\Backend\Actions\Tag\CreateTag;
+use BCleverly\Backend\Actions\Tag\DeleteTag;
+use BCleverly\Backend\Actions\Tag\EditTag;
+use BCleverly\Backend\Actions\Tag\ListTagByType;
+use BCleverly\Backend\Actions\Tag\ListTags;
+use BCleverly\Backend\Actions\Tag\StoreTag;
+use BCleverly\Backend\Actions\Tag\StoreTagByType;
+use BCleverly\Backend\Actions\Tag\UpdateTag;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowDashboard::class)->name('index');
 
@@ -65,7 +83,6 @@ Route::group([
     Route::post('day', StoreDay::class)->name('day.store');
     Route::get('day/{day}', ManageDay::class)->name('day');
 //        Route::get('/{day}/{stage}', ManageFestival::class)->name('dashboard');
-
 });
 
 //    Route::group([

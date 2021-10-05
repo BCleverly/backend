@@ -3,7 +3,8 @@
 namespace BCleverly\Backend\Models\Commerce;
 
 use BCleverly\Backend\Database\Factories\Commerce\ProductOptionsFactory;
-use Illuminate\Database\Eloquent\{Factories\HasFactory, Model};
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductOptions extends Model
 {

@@ -18,6 +18,7 @@ class UpdateProduct
     public function handle(ActionRequest $request, Product $product): Product
     {
         $product->update($request->validated());
+
         return $product;
     }
 

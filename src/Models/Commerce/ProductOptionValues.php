@@ -4,7 +4,8 @@ namespace BCleverly\Backend\Models\Commerce;
 
 use BCleverly\Backend\Database\Factories\Commerce\ProductOptionsFactory;
 use BCleverly\Backend\Database\Factories\Commerce\ProductOptionValuesFactory;
-use Illuminate\Database\Eloquent\{Factories\HasFactory, Model};
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductOptionValues extends Model
 {

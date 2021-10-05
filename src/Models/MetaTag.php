@@ -3,7 +3,9 @@
 namespace BCleverly\Backend\Models;
 
 use BCleverly\Backend\Database\Factories\MetaTagFactory;
-use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\BelongsTo};
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OwenIt\Auditing\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -14,7 +16,7 @@ class MetaTag extends Model implements \OwenIt\Auditing\Contracts\Auditable, Has
     use HasFactory, \OwenIt\Auditing\Auditable, InteractsWithMedia;
 
     protected $with = [
-        'media'
+        'media',
     ];
 
     protected $fillable = [
@@ -35,7 +37,6 @@ class MetaTag extends Model implements \OwenIt\Auditing\Contracts\Auditable, Has
             ->addMediaCollection('hero')
             ->singleFile()
             ->registerMediaConversions(function (Media $media) {
-
                 $this->addMediaConversion('thumb')
                      ->width(360)
                      ->height(360)

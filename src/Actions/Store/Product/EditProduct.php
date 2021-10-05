@@ -13,5 +13,4 @@ class EditProduct
     {
         return response()->view('dashboard.store.product.edit', compact('product'));
     }
-
 }

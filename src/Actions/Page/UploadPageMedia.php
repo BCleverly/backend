@@ -24,7 +24,7 @@ class UploadPageMedia
         return [
             'success' => true,
             'file' => [
-                'url' => $page->addMediaFromRequest('image')->withResponsiveImages()->toMediaCollection('images')->getUrl()
+                'url' => $page->addMediaFromRequest('image')->withResponsiveImages()->toMediaCollection('images')->getUrl(),
             ],
         ];
     }

@@ -12,12 +12,12 @@ class CreateTag
     public function handle(): array
     {
         return [
-            'tagTypes' => Tag::select('type')->distinct()->get()->transform(function($item) {
+            'tagTypes' => Tag::select('type')->distinct()->get()->transform(function ($item) {
                 return [
                     'value' => $item->type,
-                    'text' => $item->type
+                    'text' => $item->type,
                 ];
-            })->all()
+            })->all(),
         ];
     }
 

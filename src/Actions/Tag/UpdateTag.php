@@ -17,18 +17,19 @@ class UpdateTag
         return [
             'name' => [
                 'required',
-                Rule::unique('tags')
+                Rule::unique('tags'),
             ],
         ];
     }
 
-    public function handle(ActionRequest $request, Tag $tag) : Tag
+    public function handle(ActionRequest $request, Tag $tag): Tag
     {
         $tag->update($request->validated());
+
         return $tag;
     }
 
-    public function htmlResponse(Tag $tag) : RedirectResponse
+    public function htmlResponse(Tag $tag): RedirectResponse
     {
         return redirect()->route('dashboard.tag.type.index', $tag->type);
     }
