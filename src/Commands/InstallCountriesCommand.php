@@ -24,6 +24,7 @@ class InstallCountriesCommand extends Command
     {
         if (Country::count() > 0) {
             $this->alert('Countries already in place.');
+
             return 0;
         }
 
@@ -31,6 +32,7 @@ class InstallCountriesCommand extends Command
             Country::create($country);
         });
         $this->comment('All done');
+
         return 0;
     }
 }

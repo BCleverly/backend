@@ -16,22 +16,22 @@ class StoreProduct
             'name' => [
                 'required',
                 'string',
-                'min:2'
+                'min:2',
             ],
             'sku' => [
                 'required',
                 'string',
-                'min:2'
+                'min:2',
             ],
             'description' => [
                 'required',
                 'string',
-                'min:2'
+                'min:2',
             ],
             'body' => [
                 'required',
                 'string',
-                'min:2'
+                'min:2',
             ],
             'price' => [
                 'required',
@@ -40,7 +40,7 @@ class StoreProduct
             'weight' => [
                 'required',
                 'integer',
-            ]
+            ],
         ];
     }
 

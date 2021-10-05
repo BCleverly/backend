@@ -13,7 +13,7 @@ class EditTag
     public function asController(Tag $tag)
     {
         return [
-            'tag' => $tag
+            'tag' => $tag,
         ];
     }
 

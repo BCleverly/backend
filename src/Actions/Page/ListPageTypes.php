@@ -14,7 +14,7 @@ class ListPageTypes
     public function handle(): array
     {
         return [
-            'types' => Page::select('type')->distinct()->get()
+            'types' => Page::select('type')->distinct()->get(),
         ];
     }
 

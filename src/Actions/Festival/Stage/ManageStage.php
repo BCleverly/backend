@@ -14,8 +14,9 @@ class ManageStage
     public function handle(FestivalDay $day): array
     {
         $day->load('stages');
+
         return [
-            'day' => $day
+            'day' => $day,
         ];
     }
 

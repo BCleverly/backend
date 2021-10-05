@@ -3,8 +3,16 @@
 namespace BCleverly\Backend\Models;
 
 use BCleverly\Backend\Database\Factories\PageFactory;
-use BCleverly\Backend\Traits\{HasAverageReadingTime, HasMetaTags, HasTags, HasTranslations};
-use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\BelongsTo, Relations\HasOne, SoftDeletes, Builder};
+use BCleverly\Backend\Traits\HasAverageReadingTime;
+use BCleverly\Backend\Traits\HasMetaTags;
+use BCleverly\Backend\Traits\HasTags;
+use BCleverly\Backend\Traits\HasTranslations;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
@@ -67,7 +75,7 @@ class Page extends Model implements Auditable, HasMedia
 //        return 'slug';
 //    }
 
-    public function scopeType($query, string $type = ''):Builder
+    public function scopeType($query, string $type = ''): Builder
     {
         return $query->where('type', $type);
     }
@@ -106,7 +114,6 @@ class Page extends Model implements Auditable, HasMedia
     {
         return $this->belongsTo(config('backend.user_class'), 'author_id', 'id');
     }
-
 
     public function isPublished(): mixed
     {

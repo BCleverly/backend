@@ -34,7 +34,7 @@ class CreateDirectory
     public function handle(ActionRequest $request)
     {
         $request->validated();
-        if ($this->storage->exists($request->get('path') . DIRECTORY_SEPARATOR . $request->get('name'))) {
+        if ($this->storage->exists($request->get('path').DIRECTORY_SEPARATOR.$request->get('name'))) {
             return false;
         }
 

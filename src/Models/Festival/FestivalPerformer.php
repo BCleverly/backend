@@ -4,12 +4,17 @@ namespace BCleverly\Backend\Models\Festival;
 
 use BCleverly\Backend\Database\Factories\Festival\FestivalPerformerFactory;
 use BCleverly\Backend\Traits\HasMetaTags;
-use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\BelongsToMany, SoftDeletes};
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
-use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Sluggable\{HasSlug, SlugOptions};
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class FestivalPerformer extends Model implements Auditable, HasMedia
 {
@@ -33,7 +38,7 @@ class FestivalPerformer extends Model implements Auditable, HasMedia
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
                           ->generateSlugsFrom('name')

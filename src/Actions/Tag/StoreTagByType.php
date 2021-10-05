@@ -15,7 +15,7 @@ class StoreTagByType
         return [
             'name' => [
                 'required',
-            ]
+            ],
         ];
     }
 

@@ -14,7 +14,7 @@ class MetaTagFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->sentence,
-            'image' => $this->faker->imageUrl
+            'image' => $this->faker->imageUrl,
         ];
     }
 }

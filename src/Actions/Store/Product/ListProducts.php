@@ -12,7 +12,7 @@ class ListProducts
     public function handle(): array
     {
         return [
-            'products' => Product::orderBy('updated_at','desc')->paginate(25)
+            'products' => Product::orderBy('updated_at', 'desc')->paginate(25),
         ];
     }
 

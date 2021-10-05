@@ -3,7 +3,6 @@
 namespace BCleverly\Backend\Database\Factories\Festival;
 
 use BCleverly\Backend\Models\Festival\FestivalDay;
-
 use BCleverly\Backend\Models\Festival\FestivalPerformer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;

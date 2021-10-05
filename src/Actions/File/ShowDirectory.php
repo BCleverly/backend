@@ -25,7 +25,7 @@ class ShowDirectory
         return [
             'path' => $path,
             'files' => $this->storage->files($path),
-            'directories' => $this->storage->directories($path)
+            'directories' => $this->storage->directories($path),
         ];
     }
 

@@ -20,14 +20,14 @@ class Product extends Model implements \OwenIt\Auditing\Contracts\Auditable
         'price',
         'weight',
         'description',
-        'body'
+        'body',
     ];
 
     protected $translatable = [
         'name',
         'slug',
         'description',
-        'body'
+        'body',
     ];
 
     public function getSlugOptions(): SlugOptions

@@ -1,4 +1,5 @@
 <?php
+
 // config for cleverly/backend
 return [
 
@@ -14,6 +15,6 @@ return [
             'festival_stage' => 'festival_stages',
             'festival_stage_performer' => 'festival_stage_performer',
             'festival_performer' => 'festival_performers',
-        ]
-    ]
+        ],
+    ],
 ];

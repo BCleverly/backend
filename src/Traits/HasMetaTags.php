@@ -10,7 +10,7 @@ trait HasMetaTags
     {
         return $this->morphOne(MetaTag::class, 'meta_taggable')->withDefault([
             'title' => '',
-            'description' => ''
+            'description' => '',
         ]);
     }
 }

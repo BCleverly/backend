@@ -18,7 +18,7 @@ class PageFactory extends Factory
             'uuid' => Str::uuid(),
             'excerpt' => $this->faker->sentence,
             'author_id' => $this->faker->numberBetween(1, \App\Models\User::count()),
-            'body' => '{"time":1629646555185,"blocks":[{"id":"oPpXIDM_IG","type":"header","data":{"text":"hello world","level":1}}],"version":"2.22.2"}'
+            'body' => '{"time":1629646555185,"blocks":[{"id":"oPpXIDM_IG","type":"header","data":{"text":"hello world","level":1}}],"version":"2.22.2"}',
         ];
     }
 }

@@ -23,7 +23,6 @@ class Search
         )->paginate()];
     }
 
-
     public function htmlResponse($data)
     {
         return view('backend::search.index', $data);

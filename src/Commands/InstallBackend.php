@@ -17,15 +17,15 @@ class InstallBackend extends Command
     protected array $providerConfigs = [
         [
             '--provider' => AuditingServiceProvider::class,
-            '--tag' => 'config'
-        ]
+            '--tag' => 'config',
+        ],
     ];
 
     protected array $providerMigrations = [
         [
             '--provider' => AuditingServiceProvider::class,
-            '--tag' => 'migrations'
-        ]
+            '--tag' => 'migrations',
+        ],
     ];
 
     protected array $providers = [
@@ -37,14 +37,14 @@ class InstallBackend extends Command
         ],
         [
             '--provider' => MediaLibraryServiceProvider::class,
-        ]
+        ],
     ];
 
     protected array $providerAssets = [
         [
             '--provider' => BackendServiceProvider::class,
-            '--tag' => 'assets'
-        ]
+            '--tag' => 'assets',
+        ],
     ];
 
     public function __construct(protected \Illuminate\Contracts\Console\Kernel $kernel)
@@ -55,22 +55,23 @@ class InstallBackend extends Command
     public function handle(): int
     {
         $this->info('Getting configs...');
-        foreach($this->providerConfigs as $config) {
+        foreach ($this->providerConfigs as $config) {
             $this->kernel->call('vendor:publish', $config);
         }
 
         $this->info('Getting migrations...');
-        foreach($this->providerMigrations as $config) {
+        foreach ($this->providerMigrations as $config) {
             $this->kernel->call('vendor:publish', $config);
         }
-        foreach($this->providers as $config) {
+        foreach ($this->providers as $config) {
             $this->kernel->call('vendor:publish', $config);
         }
 
         $this->info('Getting assets...');
-        foreach($this->providerAssets as $config) {
+        foreach ($this->providerAssets as $config) {
             $this->kernel->call('vendor:publish', $config);
         }
+
         return 0;
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BCleverly\Backend\Actions\Tag;
-
 
 use Illuminate\Database\Eloquent\Collection;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -25,7 +23,7 @@ class ListTagByType
     public function htmlResponse($tags)
     {
         return response()->view('backend::tag.type.index', [
-            'tags' => $tags
+            'tags' => $tags,
         ]);
     }
 }

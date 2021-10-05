@@ -12,13 +12,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
     public function setUp(): void
     {
         $this->loadEnvironmentVariables();
-        
+
         parent::setUp();
 
         $this->setUpDatabase($this->app);
 
         $this->withMiddleware([
-           Authenticate::class
+            Authenticate::class,
         ]);
     }
 
@@ -50,7 +50,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function setUpDatabase(Application $app)
     {
-        $festivals = require  './database/migrations/create_festival_tables.php.stub';
+        $festivals = require './database/migrations/create_festival_tables.php.stub';
         (new $festivals())->up();
     }
 }

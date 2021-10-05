@@ -15,23 +15,23 @@ class EditPage
     {
         return [
             'page' => $page,
-            'pages' => Page::all('id','name')->transform(function($item) {
+            'pages' => Page::all('id', 'name')->transform(function ($item) {
                 return [
                     'value' => $item->id,
-                    'text' => $item->name
+                    'text' => $item->name,
                 ];
             })->all(),
-            'pageTags' => $page->tags->groupBy('type')->each->transform(fn($item) => $item->name)->toArray(),
-            'categories' => Tag::where('type','categories')->get(['name'])->transform(function($item) {
+            'pageTags' => $page->tags->groupBy('type')->each->transform(fn ($item) => $item->name)->toArray(),
+            'categories' => Tag::where('type', 'categories')->get(['name'])->transform(function ($item) {
                 return [
                     'value' => $item->name,
-                    'text' => $item->name
+                    'text' => $item->name,
                 ];
             })->all(),
-            'tags' => Tag::where('type','tags')->get(['name'])->transform(function($item) {
+            'tags' => Tag::where('type', 'tags')->get(['name'])->transform(function ($item) {
                 return [
                     'value' => $item->name,
-                    'text' => $item->name
+                    'text' => $item->name,
                 ];
             })->all(),
         ];

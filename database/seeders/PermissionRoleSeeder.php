@@ -5,8 +5,8 @@ namespace BCleverly\Backend\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-class PermissionRoleSeeder extends Seeder {
-
+class PermissionRoleSeeder extends Seeder
+{
     protected array $roles = [
         'SuperAdmin',
         'Editor',
@@ -18,13 +18,12 @@ class PermissionRoleSeeder extends Seeder {
         'create',
         'read',
         'update',
-        'delete'
+        'delete',
     ];
 
     public function run()
     {
-        foreach($this->roles as $role)
-        {
+        foreach ($this->roles as $role) {
             Role::create(['name' => $role]);
         }
     }

@@ -9,14 +9,14 @@ use BCleverly\Backend\Models\Festival\FestivalPerformer;
 use BCleverly\Backend\Models\Festival\FestivalStage;
 use BCleverly\Backend\Models\Page;
 use BCleverly\Backend\Observers\FestivalDayObserver;
+use BCleverly\Backend\Observers\FestivalPerformerObserver;
 use BCleverly\Backend\Observers\FestivalStageObserver;
 use BCleverly\Backend\Observers\PageObserver;
-use BCleverly\Backend\Observers\FestivalPerformerObserver;
 use BCleverly\Backend\Search\Dashboard;
 use BCleverly\Backend\Views\Components\ManagePerformers;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -42,7 +42,7 @@ class BackendServiceProvider extends PackageServiceProvider
             ->hasAssets()
             ->hasCommands([
                 InstallCountriesCommand::class,
-                InstallBackend::class
+                InstallBackend::class,
             ]);
     }
 
@@ -69,7 +69,7 @@ class BackendServiceProvider extends PackageServiceProvider
                 'as'         => 'dashboard.',
                 'prefix'     => 'dashboard',
             ], function () {
-                require_once __DIR__ . '/../routes/routes.php';
+                require_once __DIR__.'/../routes/routes.php';
             });
         });
 

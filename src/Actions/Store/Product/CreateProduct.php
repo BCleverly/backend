@@ -8,7 +8,7 @@ class CreateProduct
 {
     use AsAction;
 
-    public function handle():array
+    public function handle(): array
     {
         return [];
     }
