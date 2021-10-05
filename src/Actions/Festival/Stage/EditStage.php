@@ -8,26 +8,24 @@ use BCleverly\Backend\Models\Festival\FestivalStage;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class CreateStage
+class EditStage
 {
     use AsAction;
 
-    public function handle(): array
+    public function handle(FestivalStage $stage): array
     {
         return [
-            'stage' => FestivalStage::where('name', '')->firstOrCreate([
-                'name' => ''
-            ])
+            'stage' => $stage
         ];
     }
 
-    public function asController(): array
+    public function asController(FestivalStage $stage)
     {
-        return $this->handle();
+        return $this->handle($stage);
     }
 
     public function htmlResponse($data)
     {
-        return response()->redirectToRoute('dashboard.festival.stage.edit', $data);
+        return response()->view('backend::festival.stage.edit', $data);
     }
 }

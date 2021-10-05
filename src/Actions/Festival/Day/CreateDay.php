@@ -21,8 +21,8 @@ class CreateDay
         return $this->handle();
     }
 
-    public function htmlResponse()
+    public function htmlResponse(array $data)
     {
-        return response()->view('backend::festival.day.create');
+        return response()->view('backend::festival.day.create', $data);
     }
 }

@@ -11,18 +11,16 @@ class ManageStage
 {
     use AsAction;
 
-    public function handle(FestivalDay $day): array
+    public function handle(FestivalStage $stage): array
     {
-        $day->load('stages');
-
         return [
-            'day' => $day,
+            'stage' => $stage,
         ];
     }
 
-    public function asController(FestivalDay $day): array
+    public function asController(FestivalStage $stage): array
     {
-        return $this->handle($day);
+        return $this->handle($stage);
     }
 
     public function htmlResponse($data)

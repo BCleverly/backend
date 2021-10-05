@@ -7,6 +7,9 @@
                     <p><a href="{{ route('dashboard.festival.day', $day) }}">{{ $day->name }}</a></p>
                 </div>
             @endforeach
+            <div>
+                <p><a href="{{ route('dashboard.festival.day.create') }}">Create</a></p>
+            </div>
         </div>
         <div class="w-1/3">
             <h2 class="underline font-semibold">Stages</h2>
@@ -15,6 +18,9 @@
                     <p><a href="">{{ $stage->name }}</a></p>
                 </div>
             @endforeach
+            <div>
+                <p><a href="{{ route('dashboard.festival.stage.create') }}">Create</a></p>
+            </div>
         </div>
         <div class="w-1/3">
             <h2 class="underline font-semibold">Performers</h2>
@@ -23,6 +29,9 @@
                     <p><a href="">{{ $performer->name }}</a></p>
                 </div>
             @endforeach
+            <div>
+                <p><a href="{{ route('dashboard.festival.performer.create') }}">Create</a></p>
+            </div>
         </div>
     </div>
 </x:backend::layouts.app>

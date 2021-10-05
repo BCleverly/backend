@@ -1,20 +1,21 @@
 <?php
 
-namespace BCleverly\Backend\Actions\Festival\Performer;
+namespace BCleverly\Backend\Actions\Festival\STage;
 
 use BCleverly\Backend\Models\Festival\FestivalDay;
 use BCleverly\Backend\Models\Festival\FestivalPerformer;
+use BCleverly\Backend\Models\Festival\FestivalStage;
 use Illuminate\Contracts\Filesystem\Factory as Filesystem;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class DeletePerformer
+class DeleteStage
 {
     use AsAction;
 
-    public function handle(FestivalPerformer $performer): bool
+    public function handle(FestivalStage $stage): bool
     {
-        return $performer->delete();
+        return $stage->delete();
     }
 
     public function htmlResponse()

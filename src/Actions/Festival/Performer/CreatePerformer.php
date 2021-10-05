@@ -22,6 +22,6 @@ class CreatePerformer
 
     public function htmlResponse($data)
     {
-        return response()->view('backend::festival.performer.index', $data);
+        return response()->redirectToRoute('dashboard.festival.performer.edit', $data);
     }
 }
