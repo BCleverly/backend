@@ -15,6 +15,7 @@ use BCleverly\Backend\Observers\FestivalPerformerObserver;
 use BCleverly\Backend\Search\Dashboard;
 use BCleverly\Backend\Views\Components\ManagePerformers;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -32,7 +33,6 @@ class BackendServiceProvider extends PackageServiceProvider
             ->name('backend')
             ->hasConfigFile()
             ->hasViews()
-            ->hasRoute('routes')
             ->hasMigrations([
                 'create_pages_table',
                 'create_meta_tags_table',
@@ -61,7 +61,18 @@ class BackendServiceProvider extends PackageServiceProvider
 
         Dashboard::bootSearchable();
 
-        Blade::component('manage-performers', ManagePerformers::class);
-//        Blade::componentNamespace('BCleverly\\Backend\\Views\\Components', 'backend');
+        Route::macro('dashboard', function (string $prefix = 'dashboard') {
+            Route::group([
+                'middleware' => [
+                    'web',
+                ],
+                'as'         => 'dashboard.',
+                'prefix'     => 'dashboard',
+            ], function () {
+                require_once __DIR__ . '/../routes/routes.php';
+            });
+        });
+
+//        Blade::component('manage-performers', ManagePerformers::class);
     }
 }
