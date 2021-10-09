@@ -13,10 +13,25 @@ class ManageDay
 
     public function handle(FestivalDay $day): array
     {
-        $day->load('stages');
+        $day->load(['performers']);
+
+        // TODO This needs improving...
+        $day->performers = $day->performers->groupBy('pivot.stage')->sortByDesc('pivot.time');
 
         return [
+            'performers' => FestivalPerformer::all()->transform(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'text' => $item->name,
+                ];
+            })->all(),
             'day' => $day,
+            'stages' => $day->performers->keys()->transform(function ($item) {
+                return [
+                    'value' => $item,
+                    'text' => $item,
+                ];
+            })->all()
         ];
     }
 

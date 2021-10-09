@@ -75,4 +75,14 @@ class FestivalPerformer extends Model implements Auditable, HasMedia
             'festival_stage_id'
         )->withPivot(['performance_time', 'headliner']);
     }
+
+    public function days(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            FestivalStage::class,
+            config('backend.database.table_names.festival_day_performer'),
+            'festival_performer_id',
+            'festival_day_id'
+        )->withPivot(['time', 'headline', 'stage']);
+    }
 }

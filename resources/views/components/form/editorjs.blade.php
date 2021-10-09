@@ -3,7 +3,7 @@
 'label',
 'model' => '',
 'model',
-'uploadUrl' => ''
+'uploadUrl' => route('dashboard.file.upload')
 ])
 
 <div {{ $attributes->merge([

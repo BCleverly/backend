@@ -15,7 +15,6 @@ class ManageFestival
     {
         return [
             'days' => FestivalDay::orderBy('updated_at')->limit(5)->get(),
-            'stages' => FestivalStage::orderBy('updated_at')->limit(5)->get(),
             'performers' => FestivalPerformer::orderBy('updated_at')->limit(5)->get(),
         ];
     }

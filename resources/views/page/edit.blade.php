@@ -8,7 +8,7 @@
          <x:backend::form.textarea name="excerpt" label="" :model="$page"/>
       </x:backend::collapse>
 
-      <x:backend::form.editorjs name="body" label="" :model="$page" uploadUrl="{{ route('dashboard.page.media.upload', $page) }}"/>
+      <x:backend::form.editorjs name="body" label="" :model="$page"/>
 
       <x:backend::dividers.divider>
          Meta information

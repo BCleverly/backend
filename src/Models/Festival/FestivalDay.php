@@ -7,7 +7,6 @@ use BCleverly\Backend\Traits\HasMetaTags;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
@@ -67,13 +66,13 @@ class FestivalDay extends Model implements Auditable, HasMedia
         return FestivalDayFactory::new();
     }
 
-    public function stages(): BelongsToMany
+    public function performers(): BelongsToMany
     {
         return $this->belongsToMany(
-            FestivalStage::class,
-            config('backend.database.table_names.festival_day_stage'),
+            FestivalPerformer::class,
+            config('backend.database.table_names.festival_day_performer'),
             'festival_day_id',
-            'festival_stage_id'
-        )->withPivot(['order']);
+            'festival_performer_id'
+        )->withPivot(['time', 'headline', 'stage']);
     }
 }

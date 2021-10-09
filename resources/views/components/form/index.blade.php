@@ -3,9 +3,10 @@
 ])
 
 <form {{ $attributes->merge([
-    'class' => 'space-y-8'
+    'class' => 'space-y-8',
 ]) }}>
     @csrf
+
     <div class="mt-6 flex flex-wrap gap-4">
         <div class="flex-1">
             {{ $slot }}

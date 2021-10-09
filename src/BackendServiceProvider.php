@@ -34,6 +34,7 @@ class BackendServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigrations([
+                'create_files_table',
                 'create_pages_table',
                 'create_meta_tags_table',
                 'create_tags_table',
@@ -52,6 +53,7 @@ class BackendServiceProvider extends PackageServiceProvider
             1 => Page::class,
             2 => FestivalDay::class,
             3 => FestivalPerformer::class,
+            4 => FestivalStage::class,
         ]);
 
         Page::observe(PageObserver::class);

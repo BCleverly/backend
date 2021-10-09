@@ -31,6 +31,13 @@ Route::get('/', ShowDashboard::class)->name('index');
 Route::get('/search', \BCleverly\Backend\Actions\Search::class)->name('search');
 
 Route::group([
+    'as'     => 'file.',
+    'prefix' => 'file',
+], function () {
+    Route::post('upload', \BCleverly\Backend\Actions\File\UploadFiles::class)->name('upload');
+});
+
+Route::group([
     'as'     => 'tag.',
     'prefix' => 'tag',
 ], function () {
@@ -79,20 +86,15 @@ Route::group([
         Route::delete('/{performer}', DeletePerformer::class)->name('delete');
     });
 
-    Route::group([
-        'as'     => 'stage.',
-        'prefix' => 'stage',
-    ], function () {
-//        Route::get('/', ListPerformers::class)->name('index');
-        Route::get('/create', \BCleverly\Backend\Actions\Festival\Stage\CreateStage::class)->name('create');
-        Route::get('/{stage}/edit', \BCleverly\Backend\Actions\Festival\Stage\EditStage::class)->name('edit');
-        Route::patch('/{stage}', \BCleverly\Backend\Actions\Festival\Stage\UpdateStage::class)->name('update');
-        Route::delete('/{stage}', \BCleverly\Backend\Actions\Festival\STage\DeleteStage::class)->name('delete');
-    });
-
     Route::get('day/create', CreateDay::class)->name('day.create');
     Route::post('day', StoreDay::class)->name('day.store');
     Route::get('day/{day}', ManageDay::class)->name('day');
+    Route::post('day/{day}/performer', function() {
+        return 'here';
+    })->name('day.add-performer');
+    Route::delete('day/{day}/performer/{performer}', function() {
+        return 'deleting';
+    })->name('day.remove-performer');
 });
 
 //    Route::group([
