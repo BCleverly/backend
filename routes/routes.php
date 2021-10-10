@@ -51,7 +51,7 @@ Route::group([
     Route::get('type/{tagType}', ListTagByType::class)->name('type.index');
     Route::get('type/{tagType}/edit', ListTagByType::class)->name('type.edit');
 
-    Route::post('/type', StoreTagByType::class)->name('type.store');
+    Route::post('type', StoreTagByType::class)->name('type.store');
 });
 
 Route::group([
@@ -60,13 +60,13 @@ Route::group([
 ], function () {
     Route::get('/', ListPageTypes::class)->name('index');
     Route::post('/', StorePage::class)->name('store');
-    Route::get('/create', CreatePage::class)->name('create');
-    Route::get('/{page}/edit', EditPage::class)->name('edit');
-    Route::patch('/{page}/edit', UpdatePage::class)->name('update');
-    Route::post('/{page}/media/upload', UploadPageMedia::class)->name('media.upload');
-    Route::delete('/{page}', DeletePage::class)->name('delete');
+    Route::get('create', CreatePage::class)->name('create');
+    Route::get('{page}/edit', EditPage::class)->name('edit');
+    Route::patch('{page}/edit', UpdatePage::class)->name('update');
+    Route::post('{page}/media/upload', UploadPageMedia::class)->name('media.upload');
+    Route::delete('{page}', DeletePage::class)->name('delete');
 
-    Route::get('/{type}', ListPages::class)->name('type.index');
+    Route::get('{type}', ListPages::class)->name('type.index');
 });
 
 Route::group([
@@ -89,9 +89,15 @@ Route::group([
     Route::get('day/create', CreateDay::class)->name('day.create');
     Route::post('day', StoreDay::class)->name('day.store');
     Route::get('day/{day}', ManageDay::class)->name('day');
+
     Route::post('day/{day}/performer', function() {
         return 'here';
     })->name('day.add-performer');
+
+    Route::patch('day/{day}/performer/{performer}', function() {
+        return 'here';
+    })->name('day.update-performer');
+
     Route::delete('day/{day}/performer/{performer}', function() {
         return 'deleting';
     })->name('day.remove-performer');

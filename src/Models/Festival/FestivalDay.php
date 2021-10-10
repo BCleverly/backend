@@ -28,7 +28,7 @@ class FestivalDay extends Model implements Auditable, HasMedia
         'slug',
     ];
 
-    protected $with = ['media'];
+    protected $with = ['media', 'metaTag'];
 
     public function __construct(array $attributes = [])
     {

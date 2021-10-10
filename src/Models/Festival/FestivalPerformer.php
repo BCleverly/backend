@@ -26,7 +26,7 @@ class FestivalPerformer extends Model implements Auditable, HasMedia
         'slug',
     ];
 
-    protected $with = ['metaTag', 'media'];
+    protected $with = ['metaTag', 'media', 'metaTag'];
 
     public function __construct(array $attributes = [])
     {

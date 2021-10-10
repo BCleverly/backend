@@ -5,7 +5,7 @@
     'prefix',
     'suffix',
     'model',
-    'hideLabel' => false
+    'hideLabel' => false,
 ])
 
 <div {{ $attributes->merge([

@@ -13,7 +13,7 @@ class ManageDay
 
     public function handle(FestivalDay $day): array
     {
-        $day->load(['performers']);
+        $day->load(['performers', 'performers.metaTag']);
 
         // TODO This needs improving...
         $day->performers = $day->performers->groupBy('pivot.stage')->sortByDesc('pivot.time');
