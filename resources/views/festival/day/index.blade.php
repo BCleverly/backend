@@ -48,7 +48,7 @@
                                             @method('patch')
                                             <div class="relative flex items-start mb-4">
                                                 <div class="flex items-center h-5">
-                                                    <input {{ $performer->pivot->headline ? 'checked' : '' }} id="headline" name="headline" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                    <input value="1" {{ $performer->pivot->headline ? 'checked' : '' }} id="headline" name="headline" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">
                                                     <label for="headline" class="font-medium text-gray-700">Headliner</label>

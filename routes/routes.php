@@ -90,17 +90,11 @@ Route::group([
     Route::post('day', StoreDay::class)->name('day.store');
     Route::get('day/{day}', ManageDay::class)->name('day');
 
-    Route::post('day/{day}/performer', function() {
-        return 'here';
-    })->name('day.add-performer');
+    Route::post('day/{day}/performer', \BCleverly\Backend\Actions\Festival\Day\AddPerformer::class)->name('day.add-performer');
 
-    Route::patch('day/{day}/performer/{performer}', function() {
-        return 'here';
-    })->name('day.update-performer');
+    Route::patch('day/{day}/performer/{performer}', \BCleverly\Backend\Actions\Festival\Day\UpdatePerformer::class)->name('day.update-performer');
 
-    Route::delete('day/{day}/performer/{performer}', function() {
-        return 'deleting';
-    })->name('day.remove-performer');
+    Route::delete('day/{day}/performer/{performer}', \BCleverly\Backend\Actions\Festival\Day\RemovePerformer::class)->name('day.remove-performer');
 });
 
 //    Route::group([
