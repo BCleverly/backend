@@ -24,6 +24,9 @@ use BCleverly\Backend\Actions\Tag\ListTags;
 use BCleverly\Backend\Actions\Tag\StoreTag;
 use BCleverly\Backend\Actions\Tag\StoreTagByType;
 use BCleverly\Backend\Actions\Tag\UpdateTag;
+use BCleverly\Backend\Actions\User\ListUsers;
+use BCleverly\Backend\Actions\User\CreateUser;
+use BCleverly\Backend\Actions\User\StoreUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowDashboard::class)->name('index');
@@ -95,6 +98,19 @@ Route::group([
     Route::patch('day/{day}/performer/{performer}', \BCleverly\Backend\Actions\Festival\Day\UpdatePerformer::class)->name('day.update-performer');
 
     Route::delete('day/{day}/performer/{performer}', \BCleverly\Backend\Actions\Festival\Day\RemovePerformer::class)->name('day.remove-performer');
+});
+
+
+Route::group([
+    'as'     => 'user.',
+    'prefix' => 'user',
+], function () {
+    Route::get('/', ListUsers::class)->name('index');
+    Route::get('create', CreateUser::class)->name('create');
+    Route::post('/', StoreUser::class)->name('store');
+    Route::get('{user}/edit', fn() => '')->name('edit');
+    Route::patch('{user}', fn() => '')->name('update');
+    Route::delete('{user}', fn() => '')->name('delete');
 });
 
 //    Route::group([

@@ -44,3 +44,7 @@
 <x:backend::layouts.nav-link :href="route('dashboard.tag.index')" :active="request()->routeIs('dashboard.tag.*')">
     {{ __('Tags') }}
 </x:backend::layouts.nav-link>
+
+<x:backend::layouts.nav-link :href="route('dashboard.user.index')" :active="request()->routeIs('dashboard.user.*')">
+    {{ __('Users') }}
+</x:backend::layouts.nav-link>
