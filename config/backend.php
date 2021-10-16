@@ -7,6 +7,7 @@ return [
 
     'database' => [
         'table_names' => [
+            'user' => 'users',
             'page' => 'pages',
             'blog_post' => 'blog_posts',
             'meta_tag' => 'meta_tags',

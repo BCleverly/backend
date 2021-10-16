@@ -16,7 +16,7 @@
                     {{ $user->name }}
                 </x:backend::table.td>
                 <x:backend::table.td class="text-right">
-                    actions
+                    <a href="{{ route('dashboard.user.edit', $user) }}">Edit</a>
                 </x:backend::table.td>
             </x:backend::table.tr>
         @endforeach

@@ -26,7 +26,9 @@ use BCleverly\Backend\Actions\Tag\StoreTagByType;
 use BCleverly\Backend\Actions\Tag\UpdateTag;
 use BCleverly\Backend\Actions\User\ListUsers;
 use BCleverly\Backend\Actions\User\CreateUser;
+use BCleverly\Backend\Actions\User\EditUser;
 use BCleverly\Backend\Actions\User\StoreUser;
+use BCleverly\Backend\Actions\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowDashboard::class)->name('index');
@@ -108,8 +110,8 @@ Route::group([
     Route::get('/', ListUsers::class)->name('index');
     Route::get('create', CreateUser::class)->name('create');
     Route::post('/', StoreUser::class)->name('store');
-    Route::get('{user}/edit', fn() => '')->name('edit');
-    Route::patch('{user}', fn() => '')->name('update');
+    Route::get('{user}/edit', EditUser::class)->name('edit');
+    Route::patch('{user}', UpdateUser::class)->name('update');
     Route::delete('{user}', fn() => '')->name('delete');
 });
 
