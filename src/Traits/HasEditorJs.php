@@ -11,7 +11,7 @@ trait HasEditorJs
         $html = '';
         foreach($data->blocks as $block){
             $viewName = 'backend::editorjs.' . $block->type;
-            dump($viewName, $block->data);
+//            dump($viewName, $block->data);
             if (view()->exists($viewName)) {
                 $html .= view()->make($viewName)->with((array)$block->data);
             }
