@@ -4,8 +4,10 @@ namespace BCleverly\Backend\Models\Festival;
 
 use BCleverly\Backend\Database\Factories\Festival\FestivalPerformerFactory;
 use BCleverly\Backend\Traits\HasMetaTags;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -33,6 +35,17 @@ class FestivalPerformer extends Model implements Auditable, HasMedia
         parent::__construct($attributes);
 
         $this->setTable(config('backend.database.table_names.performer'));
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('author', function (Builder $builder) {
+            if (auth()->check() && auth()->user()->hasRole('SuperAdmin') === false) {
+                $builder->where('author_id', auth()->user()->id);
+            }
+        });
     }
 
     /**
@@ -85,4 +98,11 @@ class FestivalPerformer extends Model implements Auditable, HasMedia
             'festival_day_id'
         )->withPivot(['time', 'headline', 'stage']);
     }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(config('backend.user_class'), 'author_id', 'id');
+    }
+
 }
+

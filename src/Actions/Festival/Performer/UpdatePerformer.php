@@ -18,6 +18,21 @@ class UpdatePerformer
             'name'       => [
                 'required',
             ],
+            'body'       => [
+                'required',
+            ],
+            'heroImage'        => [
+                'nullable',
+                'file',
+            ],
+            'meta.title'       => [
+                'nullable',
+                'string',
+            ],
+            'meta.description' => [
+                'nullable',
+                'string',
+            ],
             'saveAction' => [
                 'required',
                 'string',
@@ -28,6 +43,15 @@ class UpdatePerformer
     public function handle(ActionRequest $request, FestivalPerformer $performer): array
     {
         $performer->update($request->validated());
+        $performer->metaTag()->update($request->get('meta'));
+
+        if ($request->has('heroImage')) {
+            $performer
+                ->addMediaFromRequest('heroImage')
+                ->withResponsiveImages()
+                ->toMediaCollection('heroImage');
+        }
+
         return [
             'performer' => $performer,
             'saveAction' => $request->get('saveAction')

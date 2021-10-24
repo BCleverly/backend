@@ -15,6 +15,10 @@ class UpdatePerformer
     public function rules(): array
     {
         return [
+
+            'body' => [
+                'required'
+            ],
             'headliner' => [
                 'nullable',
             ],
@@ -26,6 +30,8 @@ class UpdatePerformer
 
     public function handle(ActionRequest $request, FestivalDay $day, $performer): FestivalDay
     {
+        dd($request->validated());
+        $performer->update($request->except(['headline', 'time']));
         $day->performers()->sync([
             $performer => [
                 'headline' => $request->validated()['headline'] ?? false,

@@ -15,7 +15,7 @@
             <h2 class="underline font-semibold">Performers</h2>
             @foreach($performers as $performer)
                 <div>
-                    <p><a href="">{{ $performer->name }}</a></p>
+                    <p><a href="{{ route('dashboard.festival.performer.edit', $performer) }}">{{ $performer->name }}</a></p>
                 </div>
             @endforeach
             <div>

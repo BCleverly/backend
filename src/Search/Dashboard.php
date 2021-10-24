@@ -12,8 +12,8 @@ class Dashboard extends Aggregator
 {
     protected $models = [
         FestivalDay::class,
-        Page::class,
         FestivalPerformer::class,
+        Page::class,
     ];
 
     public function shouldBeSearchable()

@@ -4,9 +4,9 @@ namespace BCleverly\Backend\Models;
 
 use BCleverly\Backend\Database\Factories\PageFactory;
 use BCleverly\Backend\Traits\HasAverageReadingTime;
+use BCleverly\Backend\Traits\HasEditorJs;
 use BCleverly\Backend\Traits\HasMetaTags;
 use BCleverly\Backend\Traits\HasTags;
-use BCleverly\Backend\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +21,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Page extends Model implements Auditable, HasMedia
 {
-    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, HasTags, HasAverageReadingTime, InteractsWithMedia, HasMetaTags, Searchable;
+    use HasEditorJs, HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable, HasTags, HasAverageReadingTime, InteractsWithMedia, HasMetaTags, Searchable;
 
     protected $fillable = [
         'name',
@@ -74,6 +74,11 @@ class Page extends Model implements Auditable, HasMedia
 //    {
 //        return 'slug';
 //    }
+
+    public function scopeSlug($query, string $slug = ''): Builder
+    {
+        return $query->where('slug', $slug);
+    }
 
     public function scopeType($query, string $type = ''): Builder
     {

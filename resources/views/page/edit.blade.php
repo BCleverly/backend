@@ -56,6 +56,8 @@
                                  :items="$tags" multiple/>
 
          <x:backend::form.select name="parent_id"
+                                 default=""
+                                 label="Parent page"
                                  :selected="isset($page->parent) ? [$page->parent->id] : []"
                                  :items="$pages"/>
 

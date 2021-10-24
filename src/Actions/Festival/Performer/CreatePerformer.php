@@ -15,6 +15,10 @@ class CreatePerformer
         $festival = FestivalPerformer::where('name', '')->first();
         if ($festival === null) {
             $festival = FestivalPerformer::create();
+            $festival
+                ->author()
+                ->associate(auth()->user())
+                ->save();
         }
 
         return $festival;

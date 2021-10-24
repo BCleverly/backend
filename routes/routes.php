@@ -92,6 +92,7 @@ Route::group([
     });
 
     Route::get('day/create', CreateDay::class)->name('day.create');
+    Route::get('day/{day}/edit', fn() => 'edit day')->name('day.edit');
     Route::post('day', StoreDay::class)->name('day.store');
     Route::get('day/{day}', ManageDay::class)->name('day');
 

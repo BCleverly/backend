@@ -74,7 +74,5 @@ class BackendServiceProvider extends PackageServiceProvider
                 require_once __DIR__.'/../routes/routes.php';
             });
         });
-
-//        Blade::component('manage-performers', ManagePerformers::class);
     }
 }
