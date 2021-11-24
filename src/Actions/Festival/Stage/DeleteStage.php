@@ -1,6 +1,6 @@
 <?php
 
-namespace BCleverly\Backend\Actions\Festival\STage;
+namespace BCleverly\Backend\Actions\Festival\Stage;
 
 use BCleverly\Backend\Models\Festival\FestivalDay;
 use BCleverly\Backend\Models\Festival\FestivalPerformer;
